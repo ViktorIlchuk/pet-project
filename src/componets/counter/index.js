@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
 import {CounterContext} from "../../context/CounterContext";
+import './index.scss'
 
 const Counter = () => {
     const { counter } = useContext(CounterContext);
 
     return (
-        <div>The button is clicked { counter } times.</div>
+        <div className={'counter'}>The button is clicked { counter } times.</div>
     )
 };
 

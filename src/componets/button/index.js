@@ -1,6 +1,6 @@
-import React, {useContext} from "react";
-import {CounterContext} from "../../context/CounterContext";
+import React from "react";
+import './index.scss';
 
-const Button = ({onClick, type}) => (<button onClick={onClick}>{type}</button>)
+const Button = ({onClick, type}) => (<button className={type} onClick={onClick}>{type}</button>)
 
 export default Button;

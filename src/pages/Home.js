@@ -1,16 +1,19 @@
 import React, {useContext} from "react";
+import {CounterContext} from "../context/CounterContext";
 import Counter from "../componets/counter";
 import Button from "../componets/button";
-import {CounterContext} from "../context/CounterContext";
+import './Home.scss';
 
 const Home = () => {
     const { increaseCounter, decreaseCounter } = useContext(CounterContext);
 
     return (
-        <div>
+        <div className={'home-page'}>
             <Counter/>
-            <Button type={'Increase'} onClick={increaseCounter} />
-            <Button type={'Decrease'} onClick={decreaseCounter} />
+            <div>
+                <Button type={'increase'} onClick={increaseCounter} />
+                <Button type={'decrease'} onClick={decreaseCounter} />
+            </div>
         </div>
     )
 };
