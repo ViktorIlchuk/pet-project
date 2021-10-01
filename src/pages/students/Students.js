@@ -1,50 +1,54 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../../context/AppContext';
+import { useHistory } from 'react-router-dom';
 import Button from '../../components/button';
 import Table from '../../components/table';
 import studentsData from '../../mocks/studentsData.json';
 import './Students.scss';
 
 const Students = () => {
-    let { students, setStudents } = useContext(AppContext);
-    
+    const { students, setStudents } = useContext(AppContext);
+    const [markedStudentsId, setMarkedStudentsId] = useState([]);
+    const history = useHistory();
+    console.log('from students', students)
     useEffect(() => {
-        setStudents([...studentsData])
+        setStudents([...studentsData]);
     }, [setStudents]);
 
-    const addStudent = () => {
-        console.log('clicked')
+    const handleRedirectToCreateNewPage = () => {
+        history.push('/students/create-new');
     };
 
-    const removeStudent = () => {
-        return setStudents(students.filter( student => !student.checked))
+    const handleRemoveStudent = () => {
+        setStudents(students.filter( student => {
+            return markedStudentsId.indexOf(student.id) === -1;
+        }));
     };
 
-    const checkedToggle = ({target}) => {
-        return setStudents(students.map( student => {
-            if(student.id === target.id) {
-                return {...student, checked: !student.checked}
-            }
-            return student;
-        }))
-    } 
-    console.log(students)
+    const handleSelectStudent = ({target}) => {
+        const index = markedStudentsId.indexOf(target.id);
+        if(index !== -1) { 
+            return setMarkedStudentsId(markedStudentsId.splice(index, 1));
+        }
+        return setMarkedStudentsId([...markedStudentsId, target.id]);
+    };
+
     return (
         <div className='students'>
             <Table
                 students={students}
-                checkedToggle={checkedToggle}
+                onHandleSelect={handleSelectStudent}
             />
             <Button 
                 text='Add student' 
                 className='button'
-                onClick={addStudent}
+                onClick={handleRedirectToCreateNewPage}
             />
             <Button 
                 text='Remove student' 
                 className='button'
-                onClick={removeStudent}
-            />
+                onClick={handleRemoveStudent}
+            ></Button>
         </div>
     )
 };

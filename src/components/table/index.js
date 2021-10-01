@@ -1,9 +1,8 @@
 import React from 'react';
 import './index.scss';
 
-const Table = ({students, checkedToggle}) => {
+const Table = ({students, onHandleSelect}) => {
     const displayData = students.map(({
-        checked,
         name,
         email,
         position,
@@ -15,8 +14,7 @@ const Table = ({students, checkedToggle}) => {
                     <input 
                         id={id}
                         type="checkbox"
-                        defaultChecked={checked}
-                        onChange={checkedToggle}
+                        onChange={onHandleSelect}
                     />
                 </td>
                 <td>{name}</td>

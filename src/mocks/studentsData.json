@@ -3,28 +3,24 @@
         "id": "11",
         "name": "Viktor Ilchuk",
         "email": "ilchuk@i.ua",
-        "position": "Junior Front End developer",
-        "checked": false
+        "position": "Junior Front End developer"
     },
     {
         "id": "12",
         "name": "Vincent Vega",
         "email": "vincent@i.ua",
-        "position": "Middle Front End developer",
-        "checked": false
+        "position": "Middle Front End developer"
     },
     {
         "id": "13",
         "name": "Marcelos Walles",
         "email": "ilchuk@i.ua",
-        "position": "Senior Front End developer",
-        "checked": true
+        "position": "Senior Front End developer"
     },
     {
         "id": "14",
         "name": "Mia Walles",
         "email": "ilchuk@i.ua",
-        "position": "Junior Front End developer",
-        "checked": false
+        "position": "Junior Front End developer"
     }
 ]

@@ -5,15 +5,17 @@ import Courses from './pages/courses/Courses';
 import Home from './pages/home/Home';
 import Students from './pages/students/Students';
 import Header from './components/header';
+import AddStudent from './pages/addStudent';
 
 const App = () => {
     return (
         <AppContextProvider>
             <Router>
                 <Header />
+                <Route exact path='/' component={Home} />
                 <Route exact path='/students' component={Students} />
                 <Route exact path='/courses' component={Courses} />
-                <Route exact path='/' component={Home} />
+                <Route exact path='/students/create-new' component={AddStudent} />
             </Router>
         </AppContextProvider>
     )
