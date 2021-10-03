@@ -17,14 +17,17 @@ const AddStudent = () => {
         history.push('/students');
     };
 
-    const handleSubmit = event => {
-        event.preventDefault();
-        const updatedStudents = [...students, {id: uniqid(), name, email, position}];
-        console.log(students)
-        console.log(updatedStudents)
+    const handleResetForm = () => {
         resetName();
         resetEmail();
         resetPosition();
+    }
+
+    const handleSubmit = event => {
+        event.preventDefault();
+        const updatedStudents = [...students, {id: uniqid(), name, email, position}];
+        setStudents([...updatedStudents]);
+        handleResetForm()
         handleRedirectToStudentsPage();
     };
 

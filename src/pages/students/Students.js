@@ -1,19 +1,14 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { AppContext } from '../../context/AppContext';
 import { useHistory } from 'react-router-dom';
 import Button from '../../components/button';
 import Table from '../../components/table';
-import studentsData from '../../mocks/studentsData.json';
 import './Students.scss';
 
 const Students = () => {
     const { students, setStudents } = useContext(AppContext);
     const [markedStudentsId, setMarkedStudentsId] = useState([]);
     const history = useHistory();
-    console.log('from students', students)
-    useEffect(() => {
-        setStudents([...studentsData]);
-    }, [setStudents]);
 
     const handleRedirectToCreateNewPage = () => {
         history.push('/students/create-new');
