@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import { AppContext } from '../../context/AppContext';
 import studentsData from '../../mocks/studentsData.json';
 
-export default function Home() {
+const Home = () => {
     const { students, setStudents } = useContext(AppContext);
     useEffect(() => {
         setStudents([...studentsData]);
@@ -13,3 +13,5 @@ export default function Home() {
         </div>
     )
 };
+
+export default Home;

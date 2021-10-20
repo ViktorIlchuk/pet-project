@@ -2,10 +2,11 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './index.scss';
 
-export default function Sidebar({route, text}) {
+const Sidebar = ({route, text}) => {
     return (
         <div>
-            <NavLink 
+            <NavLink
+                className='nav-link'
                 to={route} 
                 exact
                 activeClassName='active'
@@ -15,3 +16,5 @@ export default function Sidebar({route, text}) {
         </div>
     )
 };
+
+export default Sidebar;

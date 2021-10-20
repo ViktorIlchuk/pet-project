@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../../context/AppContext';
-import { useForm } from "../../customHooks";
+import { useForm } from '../../customHooks';
 import uniqid from 'uniqid';
 import Form from '../../components/form';
-import formValidation from '../../formValidation';
+import addStudentValidation from '../../formValidation';
 import './index.scss';
 
 
@@ -13,9 +13,9 @@ const AddStudent = () => {
         handleChange,
         handleSubmit,
         values,
-        errors} = useForm(addData, formValidation);
+        errors} = useForm(addData, addStudentValidation);
 
-    function addData() {
+    const addData = () => {
         const updatedStudents = [...students,
             {
                 id: uniqid(),
@@ -28,7 +28,7 @@ const AddStudent = () => {
     }
 
     return (
-        <>
+        <div className='add-student-page'>
             <h1>Add student</h1>
             <Form
                 handleChange={handleChange}
@@ -36,7 +36,7 @@ const AddStudent = () => {
                 values={values}
                 errors={errors}
             />
-        </>
+        </div>
     )
 };
 

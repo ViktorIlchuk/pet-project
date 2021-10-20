@@ -13,7 +13,7 @@ const Table = ({students, onHandleSelect}) => {
                 <td>
                     <input 
                         id={id}
-                        type="checkbox"
+                        type='checkbox'
                         onChange={onHandleSelect}
                     />
                 </td>

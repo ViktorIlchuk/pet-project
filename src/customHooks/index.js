@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 export const useForm = (callback, validation) => {
     const [values, setValues] = useState({});
-    const [errors, setErrors] = useState({})
+    const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false)
     const history = useHistory();
 
@@ -24,7 +24,7 @@ export const useForm = (callback, validation) => {
         event.persist();
         setValues(values => ({ ...values, [event.target.name]: event.target.value }));
     }
-
+    console.log(errors)
     return {
         handleChange,
         handleSubmit,

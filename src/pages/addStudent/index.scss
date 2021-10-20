@@ -1,0 +1,30 @@
+.add-student-page {
+    h1 {
+        text-align: center;
+        margin-top: 10%;
+    }
+
+    .add-student-form {
+        width: 30%;
+        border: 1px solid #000000;
+        padding: 5px;
+        border-radius: 5px;
+
+        .input, button {
+            height: 30px;
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+         button {
+            background-color: royalblue;
+            color: #ffffff;
+            border: none;
+            border-radius: 2px;
+         }
+
+        //  .input {
+        //     margin-bottom: 15px;
+        //  }
+    }
+}
