@@ -28,11 +28,19 @@ const Students = () => {
         return setMarkedStudentsId([...markedStudentsId, target.id]);
     };
 
+    const handleEditStudent = (target) => {
+        history.push({
+            pathname: '/students/edit',
+            state: target
+        });
+    }
+
     return (
         <div className='students'>
             <Table
                 students={students}
                 onHandleSelect={handleSelectStudent}
+                onHandleEdit={handleEditStudent}
             />
             <Button 
                 text='Add student' 
@@ -43,7 +51,7 @@ const Students = () => {
                 text='Remove student' 
                 className='button'
                 onClick={handleRemoveStudent}
-            ></Button>
+            />
         </div>
     )
 };

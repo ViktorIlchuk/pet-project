@@ -6,6 +6,7 @@ import Home from './pages/home/Home';
 import Students from './pages/students/Students';
 import Header from './components/header';
 import AddStudent from './pages/addStudent';
+import EditStudent from './pages/editStudent';
 
 const App = () => {
     return (
@@ -16,6 +17,7 @@ const App = () => {
                 <Route exact path='/students' component={Students} />
                 <Route exact path='/courses' component={Courses} />
                 <Route exact path='/students/create-new' component={AddStudent} />
+                <Route exact path='/students/edit' component={EditStudent} />
             </Router>
         </AppContextProvider>
     )

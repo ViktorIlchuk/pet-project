@@ -7,7 +7,9 @@ const Form = ({
     handleChange,
     handleSubmit,
     values,
-    errors
+    errors,
+    targetStudentData,
+    action
 }) => {
     return(
         <div className='add-student-form-wrap'>
@@ -24,6 +26,7 @@ const Form = ({
                         type='text'
                         name='name'
                         value={values.name}
+                        defaultValue={targetStudentData.name}
                     />
                 </div>
                 <div>
@@ -36,6 +39,7 @@ const Form = ({
                             type='text'
                             name='email'
                             value={values.email}
+                            defaultValue={targetStudentData.email}
                         />
                     </div>
                 </div>
@@ -49,10 +53,11 @@ const Form = ({
                             type='text'
                             name='position'
                             value={values.position}
+                            defaultValue={targetStudentData.position}
                         />
                     </div>
                 </div>
-                <Button type='submit' text='Add Student' />
+                <Button type='submit' text={`${action} Student`} />
             </form>
         </div>
     )

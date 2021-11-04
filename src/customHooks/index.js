@@ -24,10 +24,11 @@ export const useForm = (callback, validation) => {
         event.persist();
         setValues(values => ({ ...values, [event.target.name]: event.target.value }));
     }
-    console.log(errors)
+
     return {
         handleChange,
         handleSubmit,
+        setValues,
         values,
         errors
     }

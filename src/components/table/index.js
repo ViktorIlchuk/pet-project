@@ -1,7 +1,12 @@
 import React from 'react';
+import Button from '../button';
 import './index.scss';
 
-const Table = ({students, onHandleSelect}) => {
+const Table = ({
+    students,
+    onHandleSelect,
+    onHandleEdit
+}) => {
     const displayData = students.map(({
         name,
         email,
@@ -20,6 +25,18 @@ const Table = ({students, onHandleSelect}) => {
                 <td>{name}</td>
                 <td>{email}</td>
                 <td>{position}</td>
+                <td>
+                    <Button
+                        id={id}
+                        text='Edit'
+                        onClick={() => onHandleEdit({
+                            name,
+                            email,
+                            position,
+                            id
+                        })}
+                    />
+                </td>
             </tr>
         )
     })

@@ -1,5 +1,4 @@
 export const validateName = (value) => {
-    console.log('name' , value)
     if(!value.name) {
         return {name: 'Name is required'};
     } else if(value.name.length <= 5) {
