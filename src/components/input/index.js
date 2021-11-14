@@ -8,7 +8,8 @@ const Input = ({
     name,
     className,
     error,
-    defaultValue
+    defaultValue,
+    placeholder
 }) => {
     return (
         <div>
@@ -19,6 +20,7 @@ const Input = ({
                 name={name}
                 value={value}
                 defaultValue={defaultValue || ''}
+                placeholder={placeholder}
                 required
             />
             {error && <div>{error}</div>}
