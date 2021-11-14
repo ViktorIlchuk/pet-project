@@ -3,7 +3,7 @@ import Input from '../input';
 import './index.scss';
 
 const SearchBar = ({
-    handleSearch,
+    onChange,
     placeholder,
     value
 }) => {
@@ -12,7 +12,7 @@ const SearchBar = ({
             <Input
                 className='search-bar'
                 value={value}
-                onChange={handleSearch}
+                onChange={onChange}
                 placeholder={placeholder}
             />
         </form>

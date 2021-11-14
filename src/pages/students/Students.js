@@ -1,6 +1,7 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { AppContext } from '../../context/AppContext';
 import { useHistory } from 'react-router-dom';
+import { useDebounce } from '../../customHooks';
 import Button from '../../components/button';
 import Table from '../../components/table';
 import SearchBar from '../../components/search-bar';
@@ -37,30 +38,29 @@ const Students = () => {
             state: target
         });
     }
+    const debouncedValue = useDebounce(name, 500);
 
-    const handleSearch = ({target}) => {
-        const keyword = target.value;
-
-        if(keyword !== '') {
-            const results = foundStudents.filter( student => {
-                const [name, surname] = student.name.split(' ');
-
-                return name.toLowerCase().startsWith(keyword.toLowerCase()) || 
-                surname.toLowerCase().startsWith(keyword.toLowerCase())
-            });
-            setFoundStudents(results);
-        } else {
-            setFoundStudents(students);
-        }
-
-        setName(keyword);
-    };
+    useEffect(
+        () => {
+            if(debouncedValue) {
+                const results = foundStudents.filter( student => {
+                    const [name, surname] = student.name.split(' ');
+    
+                    return name.toLowerCase().startsWith(debouncedValue.toLowerCase()) || 
+                    surname.toLowerCase().startsWith(debouncedValue.toLowerCase())
+                });
+                setFoundStudents(results);
+            } else {
+                setFoundStudents(students);
+            }
+        }, [debouncedValue]
+    );
 
     return (
         <div className='students'>
             <SearchBar 
-                handleSearch={handleSearch}
-                placeholder='Serch student'
+                onChange={e => setName(e.target.value)}
+                placeholder='Search student'
                 value={name}
             />
             <Table

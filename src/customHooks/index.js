@@ -32,4 +32,19 @@ export const useForm = (callback, validation) => {
         values,
         errors
     }
+};
+
+export function useDebounce(value, delay = 500) {
+    const [debouncedValue, setDebouncedValue] = useState(value);
+
+    useEffect(
+        () => {
+            const handler = setTimeout(() => {
+                setDebouncedValue(value)
+            }, delay);
+
+            return () => clearTimeout(handler);
+        }, [value]);
+    
+    return debouncedValue;
 }
