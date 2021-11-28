@@ -8,11 +8,34 @@ import SearchBar from '../../components/search-bar';
 import './Students.scss';
 
 const Students = () => {
+    const studentsOrder = {
+        regular: 'regular',
+        reverse: 'reverse'
+    }
+
     const { students, setStudents } = useContext(AppContext);
-    const [foundStudents, setFoundStudents] = useState(students);
-    const [name, setName] = useState('')
+    const [orderType, setOrderType] = useState(studentsOrder.regular);
+    const [sortedStudents, setSortedStudents] = useState(students);
+    const [name, setName] = useState('');
     const [markedStudentsId, setMarkedStudentsId] = useState([]);
     const history = useHistory();
+    const searchValue = useDebounce(name, 500);
+    
+    useEffect(
+        () => {
+            if(searchValue) {
+                const results = sortedStudents.filter( student => {
+                    const [name, surname] = student.name.split(' ');
+    
+                    return name.toLowerCase().startsWith(searchValue.toLowerCase()) || 
+                    surname.toLowerCase().startsWith(searchValue.toLowerCase())
+                });
+                setSortedStudents(results);
+            } else {
+                setSortedStudents(students);
+            }
+        }, [searchValue]
+    );
 
     const handleRedirectToCreateNewPage = () => {
         history.push('/students/create-new');
@@ -37,24 +60,18 @@ const Students = () => {
             pathname: '/students/edit',
             state: target
         });
-    }
-    const debouncedValue = useDebounce(name, 500);
+    };
 
-    useEffect(
-        () => {
-            if(debouncedValue) {
-                const results = foundStudents.filter( student => {
-                    const [name, surname] = student.name.split(' ');
-    
-                    return name.toLowerCase().startsWith(debouncedValue.toLowerCase()) || 
-                    surname.toLowerCase().startsWith(debouncedValue.toLowerCase())
-                });
-                setFoundStudents(results);
-            } else {
-                setFoundStudents(students);
-            }
-        }, [debouncedValue]
-    );
+    const handleTableSort = () => {
+        if(orderType === studentsOrder.regular) {
+            setSortedStudents([...sortedStudents].sort((stud1, stud2) => stud2.name.localeCompare(stud1.name)));
+            setOrderType(studentsOrder.reverse);
+        }
+        if(orderType === studentsOrder.reverse) {
+            setSortedStudents([...sortedStudents].sort((stud1, stud2) => stud1.name.localeCompare(stud2.name)));
+            setOrderType(studentsOrder.regular);
+        }
+    };
 
     return (
         <div className='students'>
@@ -63,8 +80,13 @@ const Students = () => {
                 placeholder='Search student'
                 value={name}
             />
+            <Button
+                text={orderType === studentsOrder.regular ? 'A-Z' : 'Z-A'}
+                className='sort-button'
+                onClick={handleTableSort}
+            />
             <Table
-                students={foundStudents}
+                students={sortedStudents}
                 onHandleSelect={handleSelectStudent}
                 onHandleEdit={handleEditStudent}
             />

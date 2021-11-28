@@ -5,7 +5,7 @@ import studentsData from '../../mocks/studentsData.json';
 const Home = () => {
     const { students, setStudents } = useContext(AppContext);
     useEffect(() => {
-        setStudents([...studentsData]);
+        setStudents([...studentsData].sort((stud1, stud2) => stud1.name.localeCompare(stud2.name)));
     }, [setStudents]);
     return (
         <div>
