@@ -11,7 +11,7 @@ const Students = () => {
     const studentsOrder = {
         regular: 'regular',
         reverse: 'reverse'
-    }
+    };
 
     const { students, setStudents } = useContext(AppContext);
     const [orderType, setOrderType] = useState(studentsOrder.regular);
@@ -20,6 +20,7 @@ const Students = () => {
     const [markedStudentsId, setMarkedStudentsId] = useState([]);
     const history = useHistory();
     const searchValue = useDebounce(name, 500);
+    const iconName = orderType === studentsOrder.regular ? 'down_arrow' : 'up_arrow';
     
     useEffect(
         () => {
@@ -80,15 +81,12 @@ const Students = () => {
                 placeholder='Search student'
                 value={name}
             />
-            <Button
-                text={orderType === studentsOrder.regular ? 'A-Z' : 'Z-A'}
-                className='sort-button'
-                onClick={handleTableSort}
-            />
             <Table
                 students={sortedStudents}
                 onHandleSelect={handleSelectStudent}
                 onHandleEdit={handleEditStudent}
+                onHandleSort={handleTableSort}
+                iconName={iconName}
             />
             <Button 
                 text='Add student' 

@@ -1,11 +1,14 @@
 import React from 'react';
 import Button from '../button';
+import Icon from '../icon';
 import './index.scss';
 
 const Table = ({
     students,
     onHandleSelect,
-    onHandleEdit
+    onHandleEdit,
+    onHandleSort,
+    iconName
 }) => {
     const displayData = students.map(({
         name,
@@ -39,7 +42,7 @@ const Table = ({
                 </td>
             </tr>
         )
-    })
+    });
 
     return (
         <div className='table'>
@@ -47,7 +50,16 @@ const Table = ({
                 <thead>
                     <tr>
                         <th></th>
-                        <th>Name</th>
+                        <th>
+                            <div className='name-column'>
+                                <span>Name</span>
+                                <Icon 
+                                    iconName={iconName}
+                                    viewBox="0 0 16 16"
+                                    onClick={onHandleSort}
+                                />
+                            </div>
+                        </th>
                         <th>Email</th>
                         <th>Position</th>
                     </tr>
