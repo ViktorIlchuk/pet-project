@@ -1,12 +1,14 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const studentsDataSchema = mongoose.Schema({
     id: String,
     name: String,
     email: String,
     position: String,
+}, {
+    collection: 'studentdatas'
 });
 
 const StudentsData = mongoose.model('StudentsData', studentsDataSchema);
 
-export default StudentsData;
+module.exports = StudentsData;
